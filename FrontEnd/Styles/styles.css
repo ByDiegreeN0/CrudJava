@@ -3,3 +3,19 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+.flex-container {
+    display: flex;
+}
+
+.form-control {
+    margin: .5rem;
+}
+
+.form-btn {
+    margin: .5rem;
+}
+
+.card-container {
+    margin: 1rem;
+}
