@@ -1,5 +1,6 @@
 package Controller.Servlet;
 
+import java.util.*;
 import Model.Tratamiento;
 import Model.MySQL;
 import com.google.gson.Gson;
