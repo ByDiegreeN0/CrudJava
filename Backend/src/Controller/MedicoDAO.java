@@ -1,3 +1,5 @@
+package Controller;
+
 import Model.Medico;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

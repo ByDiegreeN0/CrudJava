@@ -1,3 +1,5 @@
+package Controller;
+
 import Model.Tratamiento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
