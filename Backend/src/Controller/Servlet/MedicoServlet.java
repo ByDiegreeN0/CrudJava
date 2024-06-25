@@ -1,4 +1,4 @@
-package ControllerServlet;
+package Controller.Servlet;
 
 import Model.Medico;
 import Model.MySQL;
