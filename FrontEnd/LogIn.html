@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/style.css">
+    <title>Log in</title>
+</head>
+<body>
+    <div class="Contenedor_form">
+        <form class="form" id="loginForm">
+            <h1 class="title_form">Log-in</h1>
+            <div class="input_group">
+                <label class="label_input" for="InputEmail1">Ingresa tu email</label>
+                <input type="email" required class="input" id="InputEmail1" placeholder="Enter email">
+            </div>
+            <div class="input_group">
+                <label class="label_input" for="InputPassword1">Ingresa tu contraseña</label>
+                <input type="password" required class="input" id="InputPassword1" placeholder="Password">
+            </div>
+            <div class="input_group">
+                <label class="label_input" for="InputPassword2">Confirma tu contraseña</label>
+                <input type="password" required class="input" id="InputPassword2" placeholder="Confirm Password">
+            </div>
+            <div id="error-message" style="color: red; display: none;">Las contraseñas no coinciden</div>
+            <button class="button_submit" type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="Scripts/main.js"></script>
+</body>
+</html>
