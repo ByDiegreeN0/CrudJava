@@ -38,11 +38,11 @@ public class PacienteDAO {
         String sql = "UPDATE paciente SET pacNombres=?, pacApellidos=?, pacFechaNacimiento=?, pacSexo=? " + "WHERE pacIdentificacion = ?";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setString(1, paciente.getPacNombres());
-            statement.setString(2, paciente.getPacApellidos());
-            statement.setDate(3, new java.sql.Date(paciente.getPacFechaNacimiento().getTime()));
-            statement.setString(4, paciente.getPacSexo());
-            statement.setString(5, paciente.getPacIdentificacion());
+            statement.setString(1, Paciente.getPacNombres());
+            statement.setString(2, Paciente.getPacApellidos());
+            statement.setDate(3, new java.sql.Date(Paciente.getPacFechaNacimiento().getTime()));
+            statement.setString(4, Paciente.getPacSexo());
+            statement.setString(5, Paciente.getPacIdentificacion());
 
             int rowsUpdated = statement.executeUpdate();
             return rowsUpdated > 0;
