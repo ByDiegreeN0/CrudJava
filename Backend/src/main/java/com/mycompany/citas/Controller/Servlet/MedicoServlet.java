@@ -43,6 +43,26 @@ public class MedicoServlet extends HttpServlet {
         out.print(medicosJson);
         out.flush();
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        String Nombre = request.getParameter("Nombre");
+        String Apellido = request.getParameter("Apellido");
+
+        Medico medico = new Medico();
+
+        medico.setMedNombres(Nombre);
+        medico.setMedApellidos(Apellido);
+
+        boolean success = MedicoDAO.insertarMedico(medico);
+
+        PrintWriter out = response.getWriter();
+        out.print("{\"success\"}: " + success + "}");
+        out.flush();
+    }
 
     @Override
     public void destroy() {

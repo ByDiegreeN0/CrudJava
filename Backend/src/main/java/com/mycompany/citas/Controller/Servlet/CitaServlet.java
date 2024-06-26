@@ -3,6 +3,7 @@ package com.mycompany.citas.Controller.Servlet;
 import com.mycompany.citas.Controller.CitaDAO;
 import com.mycompany.citas.Model.Cita;
 import com.mycompany.citas.Model.MySQL;
+// import com.mycompany.citas.Model.Tratamiento;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -10,10 +11,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
+// import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;  
+
+
 
 @WebServlet("/citas")
 
@@ -65,12 +73,37 @@ public class CitaServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        Cita cita = gson.fromJson(request.getReader(), Cita.class);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date Date = null;
+        try {
+                Date = format.parse(request.getParameter("FechaDeLacita"));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        String Time =  request.getParameter("CitaFecha");
+        String Paciente =  request.getParameter("Paciente");
+        String Medico =  request.getParameter("Medico");
+    
+        int Consultorio = Integer.parseInt(request.getParameter("Consultorio"));
+        String Estado =  request.getParameter("Estado");
+
+        Cita cita = new Cita();
+
+        cita.setCitFecha(Date);
+        cita.setCitHora(Time);
+        cita.setCitPaciente(Paciente);
+        cita.setCitMedico(Medico);
+        cita.setCitConsultorio(Consultorio);
+        cita.setCitEstado(Estado);
+
         boolean success = CitaDAO.insertarCita(cita);
 
         PrintWriter out = response.getWriter();
-        out.print("{\"success\": " + success + "}");
+        out.print("{\"success\"}: " + success + "}");
         out.flush();
+
     }
 
     @Override
@@ -78,17 +111,11 @@ public class CitaServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        Cita cita = gson.fromJson(request.getReader(), Cita.class);
-        boolean success = CitaDAO.actualizarCita(cita);
-
-        PrintWriter out = response.getWriter();
-        out.print("{\"success\": " + success + "}");
-        out.flush();
+       
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
