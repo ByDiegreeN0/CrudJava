@@ -69,25 +69,77 @@
             <form id="consultorioForm">
               <div class="form-row flex-container">
                 <div class="form-group col-md-6">
-                  <label for="conNombre">Nombre del consultorio</label>
+                  <label for="conNombre">Fecha de la Cita</label>
                   <input
-                    type="text"
+                    type="date"
                     class="form-control"
                     name="NombreDelConsultorio"
                     id="conNombre"
-                    name="conNombre"
-                    placeholder="Nombre del consultorio"
+                    name="FechaDeLacita"
                     required
                   />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="conNumero">Número del consultorio</label>
+                  <label for="conNumero">Hora de la Fecha</label>
                   <input
                     type="number"
                     class="form-control"
                     name="NumeroDelConsultorio"
                     id="conNumero"
-                    name="conNumero"
+                    name="CitaFecha"
+                    placeholder="Número del consultorio"
+                    required
+                  />
+                </div>
+              </div>
+
+
+              <div class="form-row flex-container">
+                <div class="form-group col-md-6">
+                  <label for="conNombre">Paciente</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="NombreDelConsultorio"
+                    id="conNombre"
+                    name="Paciente"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="conNumero">Medico</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="NumeroDelConsultorio"
+                    id="conNumero"
+                    name="Medico"
+                    placeholder="Número del consultorio"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row flex-container">
+                <div class="form-group col-md-6">
+                  <label for="conNombre">Consultorio</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="NombreDelConsultorio"
+                    id="conNombre"
+                    name="Consultorio"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="conNumero">Estado</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="NumeroDelConsultorio"
+                    id="conNumero"
+                    name="Estado"
                     placeholder="Número del consultorio"
                     required
                   />
@@ -102,7 +154,7 @@
       </div>
     </div>
 
-    <h2 style="padding: 0.5rem">Lista de Consultorios</h2>
+    <h2 style="padding: 0.5rem">Lista de Citas</h2>
     <table class="table table-striped" id="consultoriosTable">
       <thead>
         <tr>
@@ -122,22 +174,22 @@
         // Cargar lista de consultorios
         function cargarConsultorios() {
           $.ajax({
-            url: "/consultorios",
+            url: "/citas",
             type: "GET",
             success: function (data) {
-              const consultorios = JSON.parse(data);
+              const citas = JSON.parse(data);
               const tableBody = $("#consultoriosTable tbody");
               tableBody.empty();
-              consultorios.forEach((consultorio, index) => {
+              consultorios.forEach((citas, index) => {
                 tableBody.append(
                   `<tr><th scope="row">${index + 1}</th><td>${
-                    consultorio.conNombre
+                    citas.conNombre
                   }</td></tr>`
                 );
               });
             },
             error: function () {
-              alert("Error al cargar los consultorios");
+              alert("Error al cargar las citas");
             },
           });
         }
@@ -150,16 +202,16 @@
             conNombre: $("#conNombre").val(),
           };
           $.ajax({
-            url: "/consultorios",
+            url: "/citas",
             type: "POST",
             data: formData,
             success: function () {
-              alert("Consultorio insertado correctamente");
+              alert("Cita insertada correctamente");
               cargarConsultorios();
               $("#consultorioForm")[0].reset();
             },
             error: function () {
-              alert("Error al insertar consultorio");
+              alert("Error al insertar cita");
             },
           });
         });
