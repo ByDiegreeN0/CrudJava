@@ -64,6 +64,39 @@ public class MedicoServlet extends HttpServlet {
         out.flush();
     }
 
+       
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        String Nombre = request.getParameter("Nombre");
+        String Apellido = request.getParameter("Apellido");
+
+        Medico medico = new Medico();
+
+        // seguir cod
+
+        boolean success = MedicoDAO.actualizarMedico(medico);
+
+        PrintWriter out = response.getWriter();
+        out.print("{\"success\"}: " + success + "}");
+        out.flush();
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        
+        int medIdentificacion = Integer.parseInt(request.getParameter("medIdentificacion"));
+        boolean success = MedicoDAO.eliminarMedico(medIdentificacion);
+
+        PrintWriter out = response.getWriter();
+        out.print("{\"success\": " + success + "}");
+        out.flush();
+    }
+
     @Override
     public void destroy() {
         super.destroy();

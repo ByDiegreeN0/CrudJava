@@ -120,6 +120,7 @@ public class CitaServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         int citNumero = Integer.parseInt(request.getParameter("citNumero"));
+
         boolean success = CitaDAO.eliminarCita(citNumero);
 
         PrintWriter out = response.getWriter();
